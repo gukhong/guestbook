@@ -1,6 +1,9 @@
 package com.gukhong.guestbook.service;
 
 import com.gukhong.guestbook.dto.GuestbookDTO;
+import com.gukhong.guestbook.dto.PageRequestDTO;
+import com.gukhong.guestbook.dto.PageResultDTO;
+import com.gukhong.guestbook.entity.Guestbook;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,5 +24,18 @@ public class GuestbookServiceTests {
                 .build();
 
         System.out.println(service.register(guestbookDTO));
+    }
+
+    @Test
+    public void testList(){
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).build();
+
+        PageResultDTO<GuestbookDTO, Guestbook> resultDTO = service.getList(pageRequestDTO);
+
+        for (GuestbookDTO guestbookDTO :resultDTO.getDtoList()) {
+            System.out.println(guestbookDTO);
+
+        }
     }
 }
