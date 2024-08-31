@@ -8,6 +8,8 @@ import com.gukhong.guestbook.entity.Guestbook;
 public interface GuestbookService {
     Long register(GuestbookDTO dto);
 
+    GuestbookDTO read(Long id);
+
     PageResultDTO<GuestbookDTO, Guestbook> getList(PageRequestDTO requestDTO);
 
     default Guestbook dtoToEntity(GuestbookDTO dto){
